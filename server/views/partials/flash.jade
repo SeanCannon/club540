@@ -1,0 +1,7 @@
+//- if (flash && flash.notice && flash.notice.length > 0)
+//  toast(text=flash.notice)
+//- if (flash && flash.error && flash.error.length > 0)
+//  toast(text=flash.error)
+
+toast(ng-repeat="text in $root.flash.notice", text="{{text}}")
+toast(ng-repeat="text in $root.flash.error", text="{{text}}")

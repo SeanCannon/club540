@@ -1,0 +1,165 @@
+section.group.register(ng-if="userAuthCtrl.visibleSection === 'registerProfile'")
+
+  // @todo maybe use ng-messages as element directive, run bower install angular-messages
+  form(
+    novalidate,
+    name = "registerProfileForm"
+  )
+    md-content(
+      class     = "md-padding",
+      layout    = "row",
+      layout-sm = "column",
+      style     = "font-size:1.2em"
+    )
+      md-input-container
+        label Username
+        input(
+          name             = "nickname",
+          ng-model         = "userAuthCtrl.register.profile.nickname",
+          ng-model-options = "{ debounce : 100 }",
+          ng-minlength     = "3",
+          md-maxlength     = "12",
+          ng-maxlength     = "12",
+          validate         = "noSpaces",
+          validate-async   = "uniqueNickname",
+          required
+        )
+        div(
+          ng-messages = "registerProfileForm.nickname.$error",
+          ng-if       = "registerProfileForm.$submitted || registerProfileForm.nickname.$dirty"
+        )
+          div(ng-message="required") Required field
+          div(ng-message="minlength") Too short
+          div(ng-message="maxlength") Too long
+          div(ng-message="noSpaces") No spaces please
+          div(ng-message="uniqueNickname") Not available
+
+      md-input-container
+        label Email
+        input(
+          name             = "email",
+          ng-model         = "userAuthCtrl.register.profile.email",
+          ng-model-options = "{ debounce : 100 }",
+          type             = "text",
+          validate         = "validEmail",
+          validate-async   = "uniqueEmail",
+          required
+        )
+        div(
+          ng-messages = "registerProfileForm.email.$error",
+          ng-if       = "registerProfileForm.$submitted || registerProfileForm.email.$dirty"
+        )
+          div(ng-message="required") Email is required
+          div(ng-message="validEmail") Invalid email address
+          div(ng-message="uniqueEmail") Email already registered
+
+      md-input-container(ng-init="_pw = '';")
+        label Password
+        password-strength(watcher="_pw")
+        input(
+          name             = "password",
+          ng-model         = "userAuthCtrl.register.profile.password",
+          ng-model-options = "{ debounce : 100 }",
+          capture-input    = "_pw",
+          type             = "password",
+          validate         = "passwordLongEnough",
+          required,
+        )
+        div(
+          ng-messages = "registerProfileForm.password.$error",
+          ng-if       = "registerProfileForm.$submitted || registerProfileForm.password.$dirty"
+        )
+          div(ng-message="required") Password is required
+          div(ng-message="passwordLongEnough") Too short
+
+    md-content(
+      class     = "md-padding",
+      layout    = "row",
+      layout-sm = "column",
+      style     = "font-size:1.2em"
+    )
+      div(
+        layout,
+        layout-sm = "column"
+      )
+        md-input-container(flex)
+          md-radio-group(ng-model="userAuthCtrl.register.profile.gender")
+            md-radio-button(
+              value        = "M",
+              aria-label   = "Mr.",
+              aria-checked = "true",
+              ng-class     = "{'md-checked':userAuthCtrl.register.profile.gender === 'M'}"
+            ) Male
+            md-radio-button(
+              value="F",
+              aria-label="Ms."
+            ) Female
+
+        md-input-container(flex)
+          label First Name
+          input(
+            name         = "firstName",
+            ng-model     = "userAuthCtrl.register.profile.firstName",
+            placeholder  = "",
+            ng-minlength = "2",
+            ng-maxlength = "20",
+            required
+          )
+          div(
+            ng-messages = "registerProfileForm.firstName.$error",
+            ng-if       = "registerProfileForm.$submitted || registerProfileForm.firstName.$dirty"
+          )
+            div(ng-message="required") Required field
+            div(ng-message="minlength") Too short
+            div(ng-message="maxlength") Too long
+
+        md-input-container(flex)
+          label Last Name
+          input(
+            name         = "lastName",
+            ng-model     = "userAuthCtrl.register.profile.lastName",
+            placeholder  = "",
+            ng-minlength = "2",
+            ng-maxlength = "20",
+            required
+          )
+          div(
+            ng-messages = "registerProfileForm.lastName.$error",
+            ng-if       = "registerProfileForm.$submitted || registerProfileForm.lastName.$dirty"
+          )
+            div(ng-message="required")  Required field
+            div(ng-message="minlength") Too short
+            div(ng-message="maxlength") Too long
+
+        md-input-container(flex)
+          label Birthday
+          input(
+            name     = "birthday",
+            type     = "date",
+            ng-model = "userAuthCtrl.register.profile.birthday",
+            validate = "validBirthday",
+            required
+          )
+          div(
+            ng-messages = "registerProfileForm.birthday.$error",
+            ng-if       = "registerProfileForm.$submitted || registerProfileForm.birthday.$dirty"
+          )
+            div(ng-message="required") Required field
+            div(ng-message="validBirthday") Invalid birthday
+
+      md-input-container(flex)
+        label Biography
+        textarea(
+          name         = "bio"
+          ng-model     = "userAuthCtrl.register.profile.biography",
+          columns      = "1",
+          md-maxlength = "150"
+        )
+
+    md-content(
+      class     = "md-padding",
+      layout    = "row",
+      layout-sm = "column",
+      style     = "font-size:1.2em"
+    )
+      md-button(ng-click="userAuthCtrl.completeRegistration()") Complete Registration

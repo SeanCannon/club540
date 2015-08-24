@@ -1,0 +1,63 @@
+section.group.register(ng-if="userAuthCtrl.visibleSection === 'registerGeo'")
+  form
+    header
+      h1 Register as a tricker at Club540.com - It&#039;s forever FREE!
+    section.welcome(css-size, ng-class="{squash : userAuthCtrl.countrySearch.length}")
+      p.
+        Welcome to Club540.com! First and foremost, <strong>you must already be a
+        tricker to register here</strong>. Club540 is a place for trickers to
+        share martial arts tricking videos and provide feedback for others who
+        need it, locate and meet trickers near their home, and schedule tricking
+        events and gatherings to unite the community. Club540 is a digital
+        medium provided to help trickers up their game.
+      p
+        | If you are looking to get into tricking and want to learn more about
+        | this sport, you will find a plethora of free information not only on
+        | this website, but also on two other very prominent tricking websites
+        | which have been here with Club540 since the
+        | beginning:&nbsp;
+        a(href="http://www.trickstutorials.com", target="_blank") TricksTutorials.com&nbsp;
+        | and&nbsp;
+        a(href="http://www.bilang.com", target="_blank") Bilang.com.
+      p.
+        If you are already a tricker and wish to show the community what
+        you&#039;re made of, find trickers near you to train with, and become
+        a part of an ever-growing community, then look no further. You have
+        arrived.
+    section.instructions
+      p.
+        Our location database includes most towns and villages in the entire
+        world! Please start by typing your country below
+    //md-text-float(ng-model="userAuthCtrl.countrySearch", label="Country")
+    h5(ng-show="userAuthCtrl.countrySearch.length") Select your country
+
+    md-autocomplete(
+      md-selected-item        = "selectedCountry",
+      md-search-text          = "userAuthCtrl.countrySearch",
+      md-items                = "country in ::userAuthCtrl.countries | filter:userAuthCtrl.countrySearch",
+      md-item-text            = "country.name",
+      md-selected-item-change = "userAuthCtrl.setRegisterCountry(country);"
+      placeholder             = "Type your country"
+    )
+      span(
+        md-highlight-text = "userAuthCtrl.countrySearch",
+        ng-click          = "userAuthCtrl.setRegisterCountry(country);"
+      )
+        img(ng-src="/assets/images/flags/PNG24/{{country.abbv}}.png")
+        | {{country.name | ucFirst}}
+
+    h5(ng-show="userAuthCtrl.register.geo.country.abbv === 'US' && !userAuthCtrl.register.geo.state.abbv") Select your state
+
+    md-autocomplete(
+      ng-show                 = "userAuthCtrl.register.geo.country.abbv === 'US' && !userAuthCtrl.register.geo.state.abbv",
+      md-selected-item        = "selectedState",
+      md-search-text          = "userAuthCtrl.stateSearch",
+      md-items                = "state in ::userAuthCtrl.states | filter:userAuthCtrl.stateSearch",
+      md-item-text            = "state.name",
+      md-selected-item-change = "userAuthCtrl.setRegisterState(state);"
+      placeholder             = "Type your state"
+    )
+      span(
+        md-highlight-text = "userAuthCtrl.stateSearch",
+        ng-click          = "userAuthCtrl.setRegisterState(state)"
+      ) {{state.name | ucFirst}}

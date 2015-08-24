@@ -1,0 +1,49 @@
+@import 'mixins';
+@import 'theme';
+
+site-header {
+  position : fixed;
+  z-index  : 999;
+  height   : 3rem;
+  top      : 0;
+  left     : 0;
+  right    : 0;
+  overflow : hidden;
+  clear    : both;
+
+  .gradient(#000, #222, #000);
+
+  nav {
+    height      : 3rem;
+    margin-left : 1rem;
+    float       : left;
+
+    a {
+      display            : inline-block;
+      line-height        : 3rem;
+      padding            : 0 .8rem;
+      -webkit-transition : font-size .2s, padding .2s;
+      transition         : font-size .2s, padding .2s;
+      &:hover {
+        background-color : #5a8aba;
+        color            : #FFF;
+        padding          : 0 1.3rem;
+      }
+    }
+  }
+
+  a.auth-prompt {
+    float        : right;
+    font-size    : 2.5rem;
+    color        : #FFF;
+    line-height  : 3rem;
+    margin-right : 1rem;
+    transform    : scale(.5);
+    .easeInOutQuint();
+
+    &:hover {
+      transform : scale(1);
+      color     : @colorSuccess;
+    }
+  }
+}

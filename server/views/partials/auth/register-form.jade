@@ -1,0 +1,76 @@
+form(
+  novalidate,
+  name = "registerProfileForm"
+)
+  md-content(
+    class     = "md-padding",
+    layout    = "row",
+    layout-sm = "column",
+    style     = "font-size:1.2em"
+  )
+    md-input-container
+      label Username
+      input(
+        name             = "nickname",
+        ng-model         = "userAuthCtrl.register.profile.nickname",
+        ng-model-options = "{ debounce : 100 }",
+        ng-minlength     = "3",
+        md-maxlength     = "12",
+        ng-maxlength     = "12",
+        validate         = "noSpaces",
+        validate-async   = "uniqueNickname",
+        required
+      )
+      div(
+        ng-messages = "registerProfileForm.nickname.$error",
+        ng-if       = "registerProfileForm.$submitted || registerProfileForm.nickname.$dirty"
+      )
+        div(ng-message="required") Required field
+        div(ng-message="minlength") Too short
+        div(ng-message="maxlength") Too long
+        div(ng-message="noSpaces") No spaces please
+        div(ng-message="uniqueNickname") Not available
+    md-input-container
+      label Email
+      input(
+        name             = "email",
+        ng-model         = "userAuthCtrl.register.profile.email",
+        ng-model-options = "{ debounce : 100 }",
+        type             = "text",
+        validate         = "validEmail",
+        validate-async   = "uniqueEmail",
+        required
+      )
+      div(
+        ng-messages = "registerProfileForm.email.$error",
+        ng-if       = "registerProfileForm.$submitted || registerProfileForm.email.$dirty"
+      )
+        div(ng-message="required") Email is required
+        div(ng-message="validEmail") Invalid email address
+        div(ng-message="uniqueEmail") Email already registered
+    md-input-container(ng-init="_pw = '';")
+      label Password
+      password-strength(watcher="_pw")
+      input(
+        name             = "password",
+        ng-model         = "userAuthCtrl.register.profile.password",
+        ng-model-options = "{ debounce : 100 }",
+        capture-input    = "_pw",
+        type             = "password",
+        validate         = "passwordLongEnough",
+        required
+      )
+      div(
+        ng-messages = "registerProfileForm.password.$error",
+        ng-if       = "registerProfileForm.$submitted || registerProfileForm.password.$dirty"
+      )
+        div(ng-message="required") Password is required
+        div(ng-message="passwordLongEnough") Too short
+
+  md-content(
+    class     = "md-padding",
+    layout    = "row",
+    layout-sm = "column",
+    style     = "font-size:1.2em"
+  )
+    md-button(ng-click="userAuthCtrl.initialRegistration()") Register

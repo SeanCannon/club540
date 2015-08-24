@@ -1,0 +1,21 @@
+doctype html
+html
+  head
+    base(href="/")
+    meta(name="viewport", content="initial-scale=1, maximum-scale=1, user-scalable=no")
+    title= title
+    //link(rel="stylesheet", href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css")
+    link(rel="stylesheet", href="/assets/css/vendor.css")
+    link(rel="stylesheet", href="/assets/css/style.css")
+    script(type="text/javascript", src="/assets/js/vendor.js")
+    script(type="text/javascript", src="/assets/js/main.js")
+
+  body(ng-app="club540",id="ng-app", ng-controller="RootCtrl as rootCtrl")
+    modal
+    site-header
+    include partials/flash
+
+    div(ng-view)
+      block content
+
+    footer.main-footer

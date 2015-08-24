@@ -1,0 +1,18 @@
+user-auth
+  a.closeDialog(ng-click="cancel()")
+
+  section.group.firstTime(ng-if="userAuthCtrl.visibleSection === 'firstTime'")
+    header
+      h1 Welcome to Club540.com!
+
+    p Tricking - the act of executing martial arts inspired kicks and flips with your friends for the sheer sake of seeing what's possible. Club540.com was founded in 2002 with the sole purpose of uniting the global tricking community through online video share. Club540 is a place for you to offer advice and receive constructive feedback from actual trickers in order to help you improve and advance to the next level. Only a tricker knows what tricking really is. One must experience tricking to fully understand the concept of the sport. If you trick, you belong here. Enough said.
+    include auth/register-form
+    br
+    br
+    a(ng-click="userAuthCtrl.setVisibleSection('login')") Already a member? Login here.
+
+  include auth/register-country-state
+  include auth/register-city
+  include auth/register-profile
+  include auth/login
+  include auth/reset-password

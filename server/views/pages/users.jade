@@ -1,0 +1,6 @@
+block content
+  input(ng-model="usersCtrl.userSearch")
+
+  div(ng-repeat="user in usersCtrl.users")
+    span {{user.user_email}}
+    span {{user.user_nickname}}

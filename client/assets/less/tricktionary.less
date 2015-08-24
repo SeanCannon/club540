@@ -1,0 +1,201 @@
+@import 'mixins.less';
+
+section.tricktionary {
+  .easeInOutQuint(500ms);
+  &.condensed {
+
+    margin-right : 500px;
+  }
+
+  div.trick-class {
+    header {
+      display          : block;
+      background-color : #5a8aba;
+      padding          : 10px;
+      margin           : 20px 0;
+      font-size        : 24px;
+      color            : #FFF;
+      .borderRadius(5px, 5px, 5px, 5px);
+
+      a {
+        float : right;
+        color : #FFF;
+      }
+    }
+
+    p {
+      &.ng-enter, &.ng-leave {
+        .easeInOutQuint(500ms);
+      }
+
+      &.ng-enter {
+        opacity   : 0;
+        font-size : 0;
+        overflow  : hidden;
+      }
+
+      &.ng-enter.ng-enter-active {
+        opacity   : 1;
+        font-size : 15px;
+      }
+
+      &.ng-leave {
+        opacity   : 1;
+        font-size : 15px;
+      }
+
+      &.ng-leave.ng-leave-active {
+        opacity   : 0;
+        font-size : 0;
+        overflow  : hidden;
+      }
+
+    }
+
+    div.tricks {
+
+      clear    : both;
+      overflow : hidden;
+
+      div.trick {
+        display          : block;
+        float            : left;
+        box-sizing       : border-box;
+        width            : 29.3%;
+        height           : 50px;
+        line-height      : 50px;
+        vertical-align   : middle;
+        margin           : 5px 2%;
+        font-size        : 16px;
+        text-align       : center;
+        background-color : #FCFCFC;
+        .borderRadius(5px, 5px, 5px, 5px);
+        cursor           : pointer;
+
+        &.ng-enter, &.ng-leave {
+          .easeInOutQuint(500ms);
+        }
+
+        &.ng-enter {
+          opacity       : 0;
+          height        : 0;
+          font-size     : 0;
+          margin-top    : 0;
+          margin-bottom : 0;
+          overflow      : hidden;
+        }
+
+        &.ng-enter.ng-enter-active {
+          opacity       : 1;
+          height        : 50px;
+          font-size     : 16px;
+          line-height   : 50px;
+          margin-top    : 5px;
+          margin-bottom : 5px;
+        }
+
+        &.ng-leave {
+          opacity       : 1;
+          height        : 50px;
+          font-size     : 16px;
+          line-height   : 50px;
+          margin-top    : 5px;
+          margin-bottom : 5px;
+
+        }
+
+        &.ng-leave.ng-leave-active {
+          opacity       : 0;
+          height        : 0;
+          font-size     : 0;
+          margin-top    : 0;
+          margin-bottom : 0;
+          overflow      : hidden;
+        }
+
+        span {
+          display : block;
+        }
+      }
+    }
+  }
+
+  trick-detail {
+
+    display          : block;
+    padding          : 20px;
+    background-color : #FFF;
+    opacity          : .95;
+    border-left      : 10px solid #EFEFEF;
+    .boxShadow(0px 0 10px #5a8aba);
+    position         : fixed;
+    top              : 40px;
+    right            : 0;
+    bottom           : 0;
+    width            : 450px;
+    overflow-y       : scroll;
+
+    a.close {
+      position : absolute;
+      top      : 20px;
+      right    : 20px;
+    }
+
+    h4 {
+      margin         : 50px auto;
+      width          : 400px;
+      font-size      : 48px;
+      line-height    : 48px;
+      text-transform : uppercase;
+      font-weight    : lighter;
+    }
+
+    p.description {
+      line-height : 26px;
+      text-align  : left;
+
+    }
+
+    img.spinner {
+      display : block;
+      width   : 32px;
+      height  : 32px;
+      margin  : 100px auto;
+    }
+
+    video {
+      margin        : 10px auto;
+      border        : 3px solid #EFEFEF;
+      border-radius : 15px;
+      .boxShadow(0px 0 10px #5a8aba);
+      width         : 400px;
+    }
+
+    &.ng-enter, &.ng-leave {
+      .easeInOutQuint(500ms);
+    }
+
+    &.ng-enter {
+      opacity : 0;
+      right   : -500px;
+
+    }
+
+    &.ng-enter.ng-enter-active {
+      opacity : 1;
+      right   : 0;
+    }
+
+    &.ng-leave {
+      opacity : 1;
+      right   : 0;
+
+    }
+
+    &.ng-leave.ng-leave-active {
+      opacity : 0;
+      right   : -500px
+    }
+
+  }
+}

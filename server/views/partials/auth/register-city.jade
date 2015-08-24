@@ -1,0 +1,34 @@
+section.group.register(ng-if="userAuthCtrl.visibleSection === 'registerLocation'")
+  form(
+    ng-show="userAuthCtrl.register.country.abbv !== 'US' || (userAuthCtrl.register.country.abbv === 'US' && userAuthCtrl.register.state.abbv)"
+  )
+    header
+      h1 Register as a tricker at Club540.com - It&#039;s forever FREE!
+    p.
+      We will be searching <strong>{{userAuthCtrl.getSearchRegion()}}</strong>
+      <small class="clickable" ng-click="userAuthCtrl.restartRegistration()">(Change)</small>.
+
+    p.
+      Don&#039;t search for a big city unless you live IN the city.
+      If you live in a small town that&#039;s part of a larger city, search for your
+      small town, village, or suburb first. The proximity search (searching for other
+      trickers close to you) won&#039;t be accurate if your home town is 20 miles
+      away from the city you choose!
+
+    h5(ng-show="userAuthCtrl.citySearch.length") Select your city
+
+    md-autocomplete(
+      ng-show                 = "!userAuthCtrl.register.geo.location.city",
+      md-selected-item        = "selectedItem",
+      md-search-text          = "userAuthCtrl.locationSearch",
+      md-items                = "location in userAuthCtrl.locations",
+      md-item-text            = "location.city",
+      md-selected-item-change = "userAuthCtrl.setRegisterLocation(location)"
+      placeholder             = "Type your city"
+      )
+        span(
+        md-highlight-text = "userAuthCtrl.citySearch"
+        ) {{location.city | ucFirst}} ({{location.region}})
+
+  p.systemMessage.error(ng-show="errorMessage.length")
+    // {{errorMessage}}

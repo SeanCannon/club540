@@ -1,0 +1,10 @@
+section.group.login
+  header
+    h3 Log in to your account
+
+  auth-form
+
+  span.loading(ng-show="loading")
+    //include loading
+  footer.clearfix
+    a.forgotPass(ng-click="userAuthCtrl.setVisibleSection('reset-password')") Forgot your password?

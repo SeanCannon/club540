@@ -1,0 +1,61 @@
+@colorPrimary : #5a8aba;
+@colorSuccess : lightgreen;
+
+html, body {
+  font-family : 'Source Sans Pro', sans-serif;
+  font-weight : 300;
+  font-size   : 15px;
+  color       : #000;
+
+  a {
+    color           : @colorPrimary;
+    text-decoration : underline;
+    cursor          : pointer;
+  }
+
+  h1 {
+    font-size      : 1.5rem;
+    text-transform : uppercase;
+    color          : @colorPrimary;
+  }
+
+  i {
+    display    : inline-block;
+    min-height : 1rem;
+    min-width  : 1rem;
+    border     : 1px solid red;
+  }
+
+  .clickable {
+    cursor : pointer;
+  }
+
+  span.success {
+    color : seagreen;
+  }
+
+  span.error {
+    color : darkred;
+  }
+
+  .strong {
+    font-weight : bold;
+  }
+
+  input.md-input.ng-invalid.ng-dirty {
+    outline       : none;
+    border-bottom : 2px solid #DC4A3D;
+    width         : 100%;
+  }
+
+  input.md-input.ng-touched.ng-valid {
+    outline       : none;
+    border-bottom : 2px solid #5acc4b;
+    width         : 100%;
+  }
+
+  md-radio-group.md-default-theme:focus:not(:empty) {
+    border : none;
+  }
+
+}

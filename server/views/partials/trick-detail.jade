@@ -1,0 +1,16 @@
+a.close(ng-click="close()") (X)
+
+h4 {{trick.name}}
+img.spinner(
+  ng-if="tricktionarySvc.loadingVideo",
+  src="/assets/images/blue-spinner-32x32.gif"
+)
+video(
+  ng-if="tricktionarySvc.videoIsEmbedded",
+  ng-show="!tricktionarySvc.loadingVideo",
+  tricktionary-video="{{trick.uri}}",
+  autoplay,
+  loop
+)
+p.description(ng-bind-html="trustHtml(trick.description)")
+

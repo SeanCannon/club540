@@ -1,0 +1,16 @@
+form(id="login")
+  input(
+    type        = "text",
+    name        = "user_nickname",
+    ng-model    = "user_nickname",
+    placeholder = "username"
+  )
+  input(
+    type        = "password",
+    name        = "user_password",
+    ng-model    = "user_password",
+    placeholder = "password"
+  )
+  md-button(
+    ng-click = "login()"
+  ) Login

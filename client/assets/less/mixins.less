@@ -1,0 +1,76 @@
+.boxShadow(@arguments) {
+  -webkit-box-shadow : @arguments;
+  -moz-box-shadow    : @arguments;
+  box-shadow         : @arguments;
+}
+
+.opacity(@opacity : 50) {
+  @opacityPercent : @opacity / 100;
+  -ms-filter      : ~"'progid:DXImageTransform.Microsoft.Alpha(opacity=@{opacity})'";
+  filter          : ~"alpha(opacity=@{opacity})";
+  -moz-opacity    : @opacityPercent;
+  -khtml-opacity  : @opacityPercent;
+  -webkit-opacity : @opacityPercent;
+  opacity         : @opacityPercent;
+}
+
+.greyscale(@value : 1) {
+  -ms-filter     : ~"'progid:DXImageTransform.Microsoft.Greyscale(@{value})'";
+  filter         : ~"greyscale(@{value})";
+}
+
+.backgroundOpacity(@hex, @alpha : 99) {
+  @color   : color(~"#@{hex}");
+  @iecolor : ~"#@{alpha}@{hex}";
+
+  /* Fallback for web browsers that doesn't support RGBa */
+  background : rgb(red(@color), green(@color), blue(@color)) transparent;
+  /* RGBa with 0.6 opacity */
+  @rgba : rgba(red(@color), green(@color), blue(@color), (@alpha / 100));
+  background : @rgba;
+  /* For IE 5.5 - 7 */
+  filter     : ~"'progid:DXImageTransform.Microsoft.gradient(startColorstr=@{iecolor}, endColorstr=@{iecolor})'";
+  /* For IE 8*/
+  -ms-filter : ~"'progid:DXImageTransform.Microsoft.gradient(startColorstr=@{iecolor}, endColorstr=@{iecolor})'";
+}
+
+.gradient(@color: #f5f5f5, @start: #eee, @stop: #fff) {
+  background : @color;
+  background : -webkit-gradient(linear, left top, left bottom, color-stop(0, @start), color-stop(1, @stop));
+  background : -ms-linear-gradient(top,
+  @start,
+  @stop);
+  background : -moz-linear-gradient(center top,
+  @start 0%,
+  @stop 100%);
+  background : -o-linear-gradient(@stop,
+  @start);
+  filter     : e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",@stop,@start));
+}
+
+.borderRadius(@topRight: 0, @bottomRight: 0, @bottomLeft: 0, @topLeft: 0) {
+  -webkit-border-radius : @topLeft @topRight @bottomRight @bottomLeft;
+  -moz-border-radius    : @topLeft @topRight @bottomRight @bottomLeft;
+  border-radius         : @topLeft @topRight @bottomRight @bottomLeft;
+}
+
+/**
+ * Truncates text with an ellipsis, if it exceeds the specified width.
+ * @param @maxWidth The max width in pixels
+ */
+.truncateText(@maxWidth) {
+  display           : inline-block;
+  max-width         : ~"@{maxWidth}px";
+  white-space       : nowrap;
+  overflow          : hidden;
+  text-overflow     : ellipsis;
+  -o-text-overflow  : ellipsis;
+  -ms-text-overflow : ellipsis;
+}
+
+.easeInOutQuint(@duration:500ms) {
+  -webkit-transition : all @duration cubic-bezier(0.860, 0.000, 0.070, 1.000);
+  -moz-transition    : all @duration cubic-bezier(0.860, 0.000, 0.070, 1.000);
+  -o-transition      : all @duration cubic-bezier(0.860, 0.000, 0.070, 1.000);
+  transition         : all @duration cubic-bezier(0.860, 0.000, 0.070, 1.000);
+}
