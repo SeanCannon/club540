@@ -2,16 +2,25 @@
 @import 'theme';
 
 site-header {
-  position : fixed;
-  z-index  : 999;
-  height   : 3rem;
-  top      : 0;
-  left     : 0;
-  right    : 0;
-  overflow : hidden;
-  clear    : both;
+  position         : fixed;
+  z-index          : 999;
+  height           : 3rem;
+  top              : 0;
+  left             : 0;
+  right            : 0;
+  overflow         : hidden;
+  clear            : both;
+  background-color : #333;
 
-  .gradient(#000, #222, #000);
+  span.title {
+    height         : 3rem;
+    line-height    : 3rem;
+    margin         : 0 3rem 0 1rem;
+    float          : left;
+    color          : #FFF;
+    font-size      : 2rem;
+    text-transform : uppercase;
+  }
 
   nav {
     height      : 3rem;
@@ -19,6 +28,7 @@ site-header {
     float       : left;
 
     a {
+      font-size          : 2rem;
       display            : inline-block;
       line-height        : 3rem;
       padding            : 0 .8rem;
@@ -30,6 +40,14 @@ site-header {
         padding          : 0 1.3rem;
       }
     }
+  }
+
+  span.right {
+    float        : right;
+    font-size    : 1.5rem;
+    color        : #FFF;
+    line-height  : 3rem;
+    margin-right : 1rem;
   }
 
   a.auth-prompt {

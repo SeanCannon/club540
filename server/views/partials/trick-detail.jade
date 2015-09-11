@@ -1,16 +1,25 @@
-a.close(ng-click="close()") (X)
+a.close(ng-click="close()")
+  i.fa.fa-close
 
 h4 {{trick.name}}
 img.spinner(
   ng-if="tricktionarySvc.loadingVideo",
   src="/assets/images/blue-spinner-32x32.gif"
 )
-video(
-  ng-if="tricktionarySvc.videoIsEmbedded",
-  ng-show="!tricktionarySvc.loadingVideo",
-  tricktionary-video="{{trick.uri}}",
-  autoplay,
-  loop
-)
+.video-mask(ng-if="tricktionarySvc.videoIsEmbedded")
+  video(
+    ng-show="!tricktionarySvc.loadingVideo",
+    tricktionary-video="{{trick.uri}}",
+    autoplay,
+    loop,
+    muted
+  )
 p.description(ng-bind-html="trustHtml(trick.description)")
+
+h5(ng-show="prerequisites.length") Prerequisites
+p(ng-show="prerequisites.length") Master these tricks before attempting the {{trick.name}}:
+div.trick(
+  ng-repeat="prereq in prerequisites",
+  ng-click="replaceTrickWith(prereq)"
+) {{prereq.name}}
 

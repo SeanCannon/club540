@@ -1,5 +1,13 @@
-(function (angular) {
+(function (angular, R) {
   'use strict';
+
+  var ensureCsvTricks = function(list) {
+    if (R.is(Array, list)) {
+      return list.join(',');
+    } else {
+      return list + '';
+    }
+  };
 
   /**
    * @ngdoc function
@@ -32,7 +40,7 @@
         /**
          * Grab the linear tricktionary from the server.
          */
-        tricks : $resource('/api/tricktionary/', null, {
+        tricktionary : $resource('/api/tricktionary/', null, {
           'get' : {
 
             /**
@@ -48,12 +56,74 @@
              */
             transformResponse : function (data) {
               data = JSON.parse(data);
-              svc.cache.data.put('tricks', data);
+              svc.cache.data.put('tricktionary', data);
               return data;
             }
           }
 
-        }), // End tricks
+        }), // End tricktionary
+
+
+        /**
+         * Grab the linear tricktionary from the server.
+         */
+        trickById : function(id) {
+
+          return $resource('/api/trick/id/' + id, null, {
+            'get' : {
+
+              /**
+               * Request method.
+               * @type {String}
+               */
+              method : 'GET',
+
+              /**
+               * Scrub the data before sending it back to the controller.
+               * @param data
+               * @returns {*}
+               */
+              transformResponse : function (data) {
+                data = JSON.parse(data);
+                svc.cache.data.put('trick-' + R.prop('id', data), data);
+                return data;
+              }
+            }
+
+          });
+
+        }, // End trickById
+
+
+        /**
+         * Grab the linear tricktionary from the server.
+         */
+        tricksByIds : function(trickIdsArray) {
+          var commaSeparatedTrickIds = ensureCsvTricks(trickIdsArray);
+
+          return $resource('/api/tricks/ids/' + commaSeparatedTrickIds, null, {
+            'get' : {
+
+              /**
+               * Request method.
+               * @type {String}
+               */
+              method : 'GET',
+
+              /**
+               * Scrub the data before sending it back to the controller.
+               * @param data
+               * @returns {*}
+               */
+              transformResponse : function (data) {
+                data = JSON.parse(data);
+                svc.cache.data.put('tricks-' + commaSeparatedTrickIds.replace(',', '-'), data);
+                return data;
+              }
+            }
+
+          });
+        }, // End trickById
 
         /**
          * Grab the tricks from the database who match the query.
@@ -87,9 +157,10 @@
 
       };
 
-      svc.featuredTrick = undefined;
-      svc.loadingVideo  = true;
+      svc.featuredTrick         = undefined;
+      svc.loadingVideo          = true;
+      svc.tricksByClassOnScreen = {};
 
       return svc;
     }]);
-}(angular));
+}(angular, R));

@@ -19,6 +19,12 @@ angular.module('club540').directive('tricktionaryVideo', ['$sce', 'TricktionaryS
 
         scope.tricktionarySvc = TricktionarySvc;
 
+        element.bind('error', function() {
+          scope.tricktionarySvc.loadingVideo    = false;
+          scope.tricktionarySvc.videoIsEmbedded = false;
+          scope.$apply();
+        });
+
         element.bind('canplaythrough', function() {
           scope.tricktionarySvc.loadingVideo = false;
           scope.$apply();

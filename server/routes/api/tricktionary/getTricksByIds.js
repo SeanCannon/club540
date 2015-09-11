@@ -9,26 +9,26 @@ var R           = require('ramda'),
     // TODO this--
     logUtils    = require('alien-node-winston-utils');
 
-var _getTrickByUri = require('../../../models/tricktionary/trick/methods/getTrickByUri');
+var getTricksInList = require('../../../models/tricktionary/trick/methods/getTricksInList');
 
 /**
- * Get a trick by its uri from MySQL
+ * Get tricks which match ids from MySQL
  * @param {Object} req
  * @param {Object} res
  */
-function getTrickByUri(req, res) {
+function getTricksByIds(req, res) {
 
-  var trickUri = R.path(['params', 'uri'], req);
+  var trickIds = R.path(['params', 'ids'], req);
 
-  var CACHE_KEY             = 'api.tricks.getTrickByUri:' + trickUri,
+  var CACHE_KEY             = 'api.tricks.getTricksByIds:' + trickIds,
       CACHE_EXPIRE_ONE_WEEK = 1000 * 60 * 60 * 24 * 7;
 
   return cacheUtils.getItem(CACHE_KEY)
     .then(JSON.parse)
     .then(apiUtils.jsonResponseSuccess(req, res))
-    .catch(_getTrickByUri.bind(null, trickUri))
+    .catch(getTricksInList.bind(null, 't_id', trickIds))
     .then(cacheUtils.setItem(CACHE_KEY, CACHE_EXPIRE_ONE_WEEK))
     .then(apiUtils.jsonResponseSuccess(req, res));
 }
 
-module.exports = getTrickByUri;
+module.exports = getTricksByIds;

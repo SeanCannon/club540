@@ -462,10 +462,11 @@ table {
 }
 html,
 body {
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Source Sans Pro', Helvetica, sans-serif;
   font-weight: 300;
   font-size: 15px;
   color: #000;
+  background-color: #FFF;
 }
 html a,
 body a {
@@ -484,7 +485,21 @@ body i {
   display: inline-block;
   min-height: 1rem;
   min-width: 1rem;
-  border: 1px solid red;
+}
+html a,
+body a {
+  outline: none !important;
+}
+html a i,
+body a i {
+  -webkit-transition: all 200ms cubic-bezier(0.86, 0, 0.07, 1);
+  -moz-transition: all 200ms cubic-bezier(0.86, 0, 0.07, 1);
+  -o-transition: all 200ms cubic-bezier(0.86, 0, 0.07, 1);
+  transition: all 200ms cubic-bezier(0.86, 0, 0.07, 1);
+}
+html a i:hover,
+body a i:hover {
+  transform: scale(1.2);
 }
 html .clickable,
 body .clickable {
@@ -527,12 +542,16 @@ site-header {
   right: 0;
   overflow: hidden;
   clear: both;
-  background: #000000;
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #222222), color-stop(1, #000000));
-  background: -ms-linear-gradient(top, #222222, #000000);
-  background: -moz-linear-gradient(center top, #222222 0%, #000000 100%);
-  background: -o-linear-gradient(#000000, #222222);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#000000', endColorstr='#222222', GradientType=0);
+  background-color: #333;
+}
+site-header span.title {
+  height: 3rem;
+  line-height: 3rem;
+  margin: 0 3rem 0 1rem;
+  float: left;
+  color: #FFF;
+  font-size: 2rem;
+  text-transform: uppercase;
 }
 site-header nav {
   height: 3rem;
@@ -540,6 +559,7 @@ site-header nav {
   float: left;
 }
 site-header nav a {
+  font-size: 2rem;
   display: inline-block;
   line-height: 3rem;
   padding: 0 .8rem;
@@ -550,6 +570,13 @@ site-header nav a:hover {
   background-color: #5a8aba;
   color: #FFF;
   padding: 0 1.3rem;
+}
+site-header span.right {
+  float: right;
+  font-size: 1.5rem;
+  color: #FFF;
+  line-height: 3rem;
+  margin-right: 1rem;
 }
 site-header a.auth-prompt {
   float: right;
@@ -649,17 +676,62 @@ modal .modal-wrapper .modal-content.ng-leave.ng-leave-active {
   right: 0;
 }
 section.tricktionary {
-  -webkit-transition: all 500ms cubic-bezier(0.86, 0, 0.07, 1);
-  -moz-transition: all 500ms cubic-bezier(0.86, 0, 0.07, 1);
-  -o-transition: all 500ms cubic-bezier(0.86, 0, 0.07, 1);
-  transition: all 500ms cubic-bezier(0.86, 0, 0.07, 1);
+  margin-top: 80px;
+}
+section.tricktionary div.search-container {
+  position: fixed;
+  height: 80px;
+  width: 100%;
+  background-color: #2A4C6D;
+  top: 45px;
+  left: 0;
+  border-bottom: 2px solid #676D30;
+}
+section.tricktionary div.search-container input {
+  position: relative;
+  display: block;
+  height: 40px;
+  width: 300px;
+  font-size: 24px;
+  margin: 12px auto 0 auto;
+  padding: 5px;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  -moz-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+  font-weight: 100;
 }
 section.tricktionary.condensed {
   margin-right: 500px;
 }
+section.tricktionary.condensed div.search-container input {
+  margin-left: 12px;
+}
+section.tricktionary.condensed div.trick-class div.tricks div.trick {
+  width: 46%;
+}
+@media only screen and (max-width: 1024px) {
+  section.tricktionary.condensed div.trick-class div.tricks div.trick {
+    width: 96%;
+  }
+}
+@media only screen and (max-width: 768px) {
+  section.tricktionary.condensed div.trick-class div.tricks div.trick {
+    width: 96%;
+  }
+}
+@media only screen and (max-width: 680px) {
+  section.tricktionary.condensed div.trick-class div.tricks div.trick {
+    width: 96%;
+  }
+}
+@media only screen and (max-width: 400px) {
+  section.tricktionary.condensed div.trick-class div.tricks div.trick {
+    width: 96%;
+  }
+}
 section.tricktionary div.trick-class header {
   display: block;
-  background-color: #5a8aba;
+  background-color: #5F5BED;
   padding: 10px;
   margin: 20px 0;
   font-size: 24px;
@@ -701,7 +773,7 @@ section.tricktionary div.trick-class div.tricks {
   clear: both;
   overflow: hidden;
 }
-section.tricktionary div.trick-class div.tricks div.trick {
+section.tricktionary div.trick {
   display: block;
   float: left;
   box-sizing: border-box;
@@ -712,20 +784,27 @@ section.tricktionary div.trick-class div.tricks div.trick {
   margin: 5px 2%;
   font-size: 16px;
   text-align: center;
-  background-color: #FCFCFC;
+  background-color: #FFF;
+  border: 1px solid #B4C8F1;
+  color: #333;
   -webkit-border-radius: 5px 5px 5px 5px;
   -moz-border-radius: 5px 5px 5px 5px;
   border-radius: 5px 5px 5px 5px;
   cursor: pointer;
 }
-section.tricktionary div.trick-class div.tricks div.trick.ng-enter,
-section.tricktionary div.trick-class div.tricks div.trick.ng-leave {
+@media only screen and (max-width: 1024px) {
+  section.tricktionary div.trick {
+    width: 46%;
+  }
+}
+section.tricktionary div.trick.ng-enter,
+section.tricktionary div.trick.ng-leave {
   -webkit-transition: all 500ms cubic-bezier(0.86, 0, 0.07, 1);
   -moz-transition: all 500ms cubic-bezier(0.86, 0, 0.07, 1);
   -o-transition: all 500ms cubic-bezier(0.86, 0, 0.07, 1);
   transition: all 500ms cubic-bezier(0.86, 0, 0.07, 1);
 }
-section.tricktionary div.trick-class div.tricks div.trick.ng-enter {
+section.tricktionary div.trick.ng-enter {
   opacity: 0;
   height: 0;
   font-size: 0;
@@ -733,7 +812,7 @@ section.tricktionary div.trick-class div.tricks div.trick.ng-enter {
   margin-bottom: 0;
   overflow: hidden;
 }
-section.tricktionary div.trick-class div.tricks div.trick.ng-enter.ng-enter-active {
+section.tricktionary div.trick.ng-enter.ng-enter-active {
   opacity: 1;
   height: 50px;
   font-size: 16px;
@@ -741,7 +820,7 @@ section.tricktionary div.trick-class div.tricks div.trick.ng-enter.ng-enter-acti
   margin-top: 5px;
   margin-bottom: 5px;
 }
-section.tricktionary div.trick-class div.tricks div.trick.ng-leave {
+section.tricktionary div.trick.ng-leave {
   opacity: 1;
   height: 50px;
   font-size: 16px;
@@ -749,7 +828,7 @@ section.tricktionary div.trick-class div.tricks div.trick.ng-leave {
   margin-top: 5px;
   margin-bottom: 5px;
 }
-section.tricktionary div.trick-class div.tricks div.trick.ng-leave.ng-leave-active {
+section.tricktionary div.trick.ng-leave.ng-leave-active {
   opacity: 0;
   height: 0;
   font-size: 0;
@@ -757,29 +836,46 @@ section.tricktionary div.trick-class div.tricks div.trick.ng-leave.ng-leave-acti
   margin-bottom: 0;
   overflow: hidden;
 }
-section.tricktionary div.trick-class div.tricks div.trick span {
+section.tricktionary div.trick:hover {
+  -webkit-transition: all 200ms cubic-bezier(0.86, 0, 0.07, 1);
+  -moz-transition: all 200ms cubic-bezier(0.86, 0, 0.07, 1);
+  -o-transition: all 200ms cubic-bezier(0.86, 0, 0.07, 1);
+  transition: all 200ms cubic-bezier(0.86, 0, 0.07, 1);
+  color: #FFF;
+  border: none;
+  background-color: #5aba68;
+  transform: scale(1.1);
+  font-weight: 800;
+}
+section.tricktionary div.trick span {
   display: block;
+  outline: none !important;
 }
 section.tricktionary trick-detail {
   display: block;
   padding: 20px;
   background-color: #FFF;
-  opacity: .95;
   border-left: 10px solid #EFEFEF;
   -webkit-box-shadow: 0px 0 10px #5a8aba;
   -moz-box-shadow: 0px 0 10px #5a8aba;
   box-shadow: 0px 0 10px #5a8aba;
   position: fixed;
+  text-align: center;
   top: 40px;
   right: 0;
   bottom: 0;
   width: 450px;
   overflow-y: scroll;
 }
+section.tricktionary trick-detail div.trick {
+  float: none;
+  width: auto;
+}
 section.tricktionary trick-detail a.close {
   position: absolute;
   top: 20px;
   right: 20px;
+  font-size: 36px;
 }
 section.tricktionary trick-detail h4 {
   margin: 50px auto;
@@ -789,9 +885,19 @@ section.tricktionary trick-detail h4 {
   text-transform: uppercase;
   font-weight: lighter;
 }
+section.tricktionary trick-detail h5 {
+  margin: 25px;
+  width: auto;
+  text-align: left;
+  font-size: 30px;
+  line-height: 30px;
+  text-transform: uppercase;
+  font-weight: lighter;
+}
 section.tricktionary trick-detail p.description {
   line-height: 26px;
   text-align: left;
+  margin: 25px;
 }
 section.tricktionary trick-detail img.spinner {
   display: block;
@@ -799,14 +905,24 @@ section.tricktionary trick-detail img.spinner {
   height: 32px;
   margin: 100px auto;
 }
-section.tricktionary trick-detail video {
+section.tricktionary trick-detail .video-mask {
+  -webkit-mask-image: -webkit-radial-gradient(circle, white 100%, black 100%);
+  -webkit-transform: rotate(0.000001deg);
+  transform: rotate(0.000001deg);
   margin: 10px auto;
-  border: 3px solid #EFEFEF;
-  border-radius: 15px;
+  border: 3px solid #5a8aba;
+  -webkit-border-radius: 15px 15px 15px 15px;
+  -moz-border-radius: 15px 15px 15px 15px;
+  border-radius: 15px 15px 15px 15px;
   -webkit-box-shadow: 0px 0 10px #5a8aba;
   -moz-box-shadow: 0px 0 10px #5a8aba;
   box-shadow: 0px 0 10px #5a8aba;
   width: 400px;
+  overflow: hidden;
+}
+section.tricktionary trick-detail video {
+  width: 400px;
+  display: block;
 }
 section.tricktionary trick-detail.ng-enter,
 section.tricktionary trick-detail.ng-leave {

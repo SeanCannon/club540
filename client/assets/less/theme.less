@@ -1,12 +1,22 @@
-@colorPrimary : #5a8aba;
-@colorSuccess : lightgreen;
+@import './mixins';
+
+@colorPrimary    : #5a8aba;
+@colorSuccess    : lightgreen;
+@gradientPrimary : #6fabe7;
+
+@tabletPortraitWidth  : 768px;
+@tabletLandscapeWidth : 1024px;
+@mobilePortraitWidth  : 400px;
+@mobileLandscapeWidth : 680px;
 
 html, body {
-  font-family : 'Source Sans Pro', sans-serif;
+  font-family : 'Source Sans Pro', Helvetica, sans-serif;
   font-weight : 300;
   font-size   : 15px;
   color       : #000;
-
+  //background  : -webkit-radial-gradient(circle, #FFF 15%, @gradientPrimary 160%, #FFF 115%);
+  //background  : -moz-radial-gradient(circle, #FFF 15%, @gradientPrimary 160%, #FFF 115%);
+  background-color : #FFF;
   a {
     color           : @colorPrimary;
     text-decoration : underline;
@@ -23,7 +33,17 @@ html, body {
     display    : inline-block;
     min-height : 1rem;
     min-width  : 1rem;
-    border     : 1px solid red;
+  }
+
+  a {
+    outline : none !important;
+
+    i {
+      .easeInOutQuint(200ms);
+      &:hover {
+        transform : scale(1.2);
+      }
+    }
   }
 
   .clickable {

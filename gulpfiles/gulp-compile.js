@@ -16,8 +16,16 @@ var sourceScripts = scripts.source;
 var vendorScripts = scripts.vendor;
 var vendorStyles  = styles.vendor;
 
+
+//TODO fonts next for fonyawesome
+
+
 var lessFiles = [
   './client/assets/less/style.less'
+];
+
+var fonts = [
+  './bower_components/components-font-awesome/fonts/*'
 ];
 
 var publicDest = function(optSubdir) {
@@ -40,6 +48,9 @@ var publicImageDest  = function() {
 };
 var publicVideoDest  = function() {
   return publicDest('assets/video');
+};
+var publicFontDest  = function() {
+  return publicDest('assets/fonts');
 };
 var ifGulpProd = function(stream, optNonProdStream) {
   return gulpif(argv.production, stream, optNonProdStream);
@@ -93,6 +104,7 @@ var compilationTasks = [
   'less',
   'images',
   'video',
+  'fonts',
   //'views',
   'html2js'
 ];
@@ -142,6 +154,12 @@ var copyAllVideosToPublicDirectory = function() {
   return gulp.src('./client/assets/video/**/*')
     .pipe(publicVideoDest());
 };
+
+var copyAllFontsToPublicDirectory = function() {
+  return gulp.src(fonts)
+    .pipe(publicFontDest());
+};
+
 gulp.task('scripts', buildScripts);
 
 gulp.task('vendor-scripts', compileVendorScriptsToPublicDirectory);
@@ -150,6 +168,7 @@ gulp.task('vendor-styles', compileVendorStylesToPublicDirectory);
 gulp.task('less', compileLessToPublicCssDirectory);
 gulp.task('images', copyAllImagesToPublicDirectory);
 gulp.task('video', copyAllVideosToPublicDirectory);
+gulp.task('fonts', copyAllFontsToPublicDirectory);
 //gulp.task('views', copyViewsToPublicDirectory);
 
 gulp.task('html2js', templateCompilationTask(templateConfigs.app));

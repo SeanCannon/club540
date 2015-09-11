@@ -1,18 +1,20 @@
 section.tricktionary(
     ng-class = "{condensed : tricktionaryCtrl.tricktionarySvc.visibleTrick}"
   )
+  div.search-container
+    input(ng-model="trickSearch.name", placeholder="triple cork")
   block content
-    input(ng-model="trickSearch.name")
-
     div.trick-class(
       layout-sm = "column",
       layout-md = "column",
-      ng-repeat = "trickClass in tricktionaryCtrl.tricktionary.classes",
-      ng-init   = "showTricks=true",
-      ng-class  = "{open : showTricks}"
+      ng-repeat = "trickClass in ::tricktionaryCtrl.tricktionary.classes",
+      ng-init   = "showTricks = true;",
+      ng-class  = "{open : showTricks}",
+      ng-show   = "tricktionaryCtrl.tricktionarySvc.tricksByClassOnScreen[trickClass.id].length"
     )
       header {{trickClass.name}}
-        a(ng-click="showTricks=!showTricks") <>
+        a(ng-click="showTricks=!showTricks")
+          i(ng-class  = "{'fa fa-compress' : showTricks, 'fa fa-expand' : !showTricks}")
 
       p.trick-class-description(
         ng-if        = "showTricks",
@@ -23,9 +25,9 @@ section.tricktionary(
         div.trick(
           ng-if            = "showTricks",
           data-trick-class = "{{trickClass.uri}}",
+          ng-repeat        = "trick in tricktionaryCtrl.filterByClass(trickClass) | filterTricksByName:trickSearch.name:trickClass.id",
           flex-sm,
           flex-md,
-          ng-repeat        = "trick in tricktionaryCtrl.filterByClass(trickClass)"
         )
           span(ng-click="tricktionaryCtrl.showTrick(trick)") {{trick.name}}
 

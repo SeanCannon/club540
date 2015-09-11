@@ -24,36 +24,40 @@
     // Custom modules (app/modules/*)
     'ramda'
   ]).config(['$routeProvider', '$httpProvider', '$locationProvider', '$mdThemingProvider',
-    function ($routeProvider, $httpProvider, $locationProvider, $mdThemingProvider) {
-
+    function($routeProvider, $httpProvider, $locationProvider, $mdThemingProvider) {
+      $locationProvider.html5Mode(true);
       $httpProvider.interceptors.push('FlashSvcInterceptor');
 
       $routeProvider.
-        when('/', {
-          templateUrl : '/pages/index',
-          controller  : 'MainCtrl as mainCtrl'
-        }).
-        when('/users', {
-          templateUrl : '/pages/users',
-          controller  : 'UsersCtrl as usersCtrl'
-        }).
+        //when('/', {
+        //  templateUrl : '/pages/index',
+        //  controller  : 'MainCtrl as mainCtrl'
+        //}).
+        //when('/users', {
+        //  templateUrl : '/pages/users',
+        //  controller  : 'UsersCtrl as usersCtrl'
+        //}).
         when('/tricktionary', {
-          templateUrl : '/pages/tricktionary',
-          controller  : 'TricktionaryCtrl as tricktionaryCtrl'
+          templateUrl    : '/pages/tricktionary',
+          controller     : 'TricktionaryCtrl as tricktionaryCtrl',
+          reloadOnSearch : false
         }).
-        when('/chat', {
-          templateUrl : '/pages/chat',
-          controller  : 'ChatCtrl as chatCtrl'
+        when('/tricktionary/:trick', {
+          templateUrl    : '/pages/tricktionary',
+          controller     : 'TricktionaryCtrl as tricktionaryCtrl',
+          reloadOnSearch : false
         }).
+        //when('/chat', {
+        //  templateUrl : '/pages/chat',
+        //  controller  : 'ChatCtrl as chatCtrl'
+        //}).
         otherwise({
-          //redirectTo : '/'
+          redirectTo : '/tricktionary'
         });
 
       $mdThemingProvider.theme('default')
         .primaryPalette('blue')
         .accentPalette('blue-grey');
-
-      $locationProvider.html5Mode(true);
 
     }]);
 
@@ -126,8 +130,93 @@
   }]);
 }(angular));
 
-(function (angular) {
+(function(angular) {
   'use strict';
+
+  /**
+   * @ngdoc function
+   * @author seancannon
+   * @name club540.factory.locationSvc
+   * @description
+   * # locationSvc
+   * Original: https://github.com/angular/angular.js/issues/1699#issuecomment-22511464
+   *
+   * Usage:
+   *
+   * (interception is needed for Back/Forward buttons to work)
+   *
+   * location.intercept($scope._url_pattern, function(matched) {
+   *   * can return false to abort interception
+   *   var type = matched[1]
+   *   if (!type) {
+   *     return;
+   *   }
+   *   $scope.safeApply(function() {
+   *     $scope.data_type = type;
+   *     $scope.params.page = 1;
+   *     $scope.get_data();
+   *   });
+   * });
+   *
+   * anywhere in your controller:
+   * location.skipReload().path(url);
+   *
+   * to replace in history stack:
+   * location.skipReload().path(url).replace();
+   */
+  angular.module('club540').factory('LocationSvc', [
+    '$location',
+    '$route',
+    '$rootScope',
+    function($location, $route, $rootScope) {
+      var pageRoute = $route.current;
+
+      $location.skipReload = function() {
+        var unbind = $rootScope.$on('$locationChangeSuccess', function() {
+          $route.current = pageRoute;
+          unbind();
+        });
+        return $location;
+      };
+
+      if ($location.intercept) {
+        throw '$location.intercept is already defined';
+      }
+
+      $location.intercept = function(urlPattern, loadUrl) {
+
+        var parsePath = function() {
+          var match = $location.path().match(urlPattern);
+          if (match) {
+            match.shift();
+            return match;
+          }
+        };
+
+        var unbind = $rootScope.$on("$locationChangeSuccess", function() {
+          var matched = parsePath();
+          if (!matched || loadUrl(matched) === false) {
+            return unbind();
+          }
+          $route.current = pageRoute;
+        });
+      };
+
+      return $location;
+    }
+  ]);
+}(angular));
+
+(function (angular, R) {
+  'use strict';
+
+  var ensureCsvTricks = function(list) {
+    if (R.is(Array, list)) {
+      return list.join(',');
+    } else {
+      return list + '';
+    }
+  };
 
   /**
    * @ngdoc function
@@ -160,7 +249,7 @@
         /**
          * Grab the linear tricktionary from the server.
          */
-        tricks : $resource('/api/tricktionary/', null, {
+        tricktionary : $resource('/api/tricktionary/', null, {
           'get' : {
 
             /**
@@ -176,12 +265,74 @@
              */
             transformResponse : function (data) {
               data = JSON.parse(data);
-              svc.cache.data.put('tricks', data);
+              svc.cache.data.put('tricktionary', data);
               return data;
             }
           }
 
-        }), // End tricks
+        }), // End tricktionary
+
+
+        /**
+         * Grab the linear tricktionary from the server.
+         */
+        trickById : function(id) {
+
+          return $resource('/api/trick/id/' + id, null, {
+            'get' : {
+
+              /**
+               * Request method.
+               * @type {String}
+               */
+              method : 'GET',
+
+              /**
+               * Scrub the data before sending it back to the controller.
+               * @param data
+               * @returns {*}
+               */
+              transformResponse : function (data) {
+                data = JSON.parse(data);
+                svc.cache.data.put('trick-' + R.prop('id', data), data);
+                return data;
+              }
+            }
+
+          });
+
+        }, // End trickById
+
+
+        /**
+         * Grab the linear tricktionary from the server.
+         */
+        tricksByIds : function(trickIdsArray) {
+          var commaSeparatedTrickIds = ensureCsvTricks(trickIdsArray);
+
+          return $resource('/api/tricks/ids/' + commaSeparatedTrickIds, null, {
+            'get' : {
+
+              /**
+               * Request method.
+               * @type {String}
+               */
+              method : 'GET',
+
+              /**
+               * Scrub the data before sending it back to the controller.
+               * @param data
+               * @returns {*}
+               */
+              transformResponse : function (data) {
+                data = JSON.parse(data);
+                svc.cache.data.put('tricks-' + commaSeparatedTrickIds.replace(',', '-'), data);
+                return data;
+              }
+            }
+
+          });
+        }, // End trickById
 
         /**
          * Grab the tricks from the database who match the query.
@@ -215,12 +366,13 @@
 
       };
 
-      svc.featuredTrick = undefined;
-      svc.loadingVideo  = true;
+      svc.featuredTrick         = undefined;
+      svc.loadingVideo          = true;
+      svc.tricksByClassOnScreen = {};
 
       return svc;
     }]);
-}(angular));
+}(angular, R));
 
 (function (angular) {
   'use strict';
@@ -286,21 +438,45 @@
    * # TricktionaryCtrl
    * Tricktionary controller
    */
-  angular.module('club540').controller('TricktionaryCtrl', ['$sce', '$timeout', 'TricktionarySvc', 'R',
-  function($sce, $timeout, TricktionarySvc, R) {
+  angular.module('club540').controller('TricktionaryCtrl', ['$sce', '$timeout', '$routeParams', 'TricktionarySvc', 'LocationSvc', 'R',
+  function($sce, $timeout, $routeParams, TricktionarySvc, LocationSvc, R) {
     var tricktionaryCtrl = this;
 
     tricktionaryCtrl.tricktionarySvc = TricktionarySvc;
+    tricktionaryCtrl.tricktionary    = {};
 
-    tricktionaryCtrl.tricktionary = {};
+    TricktionarySvc.resources.tricktionary.get(function(response) {
 
-    TricktionarySvc.resources.tricks.get(function(response) {
+      R.forEach(function(trickClass) {
+        tricktionaryCtrl.tricktionarySvc.tricksByClassOnScreen[R.prop('id', trickClass)] = [];
+      }, R.prop('classes', response.data));
+
+      R.forEach(function(trick) {
+        tricktionaryCtrl.tricktionarySvc.tricksByClassOnScreen[R.prop('classId', trick)].push(trick);
+      }, R.prop('tricks', response.data));
+
       tricktionaryCtrl.tricktionary = response.data;
+
+      (function preloadTrick() {
+        var uri = $routeParams.trick,
+            trick;
+        if (uri) {
+          trick = R.find(R.propEq(uri, 'uri'), R.path(['tricktionary', 'tricks'], tricktionaryCtrl));
+          if (trick) {
+            tricktionaryCtrl.showTrick(trick)
+          }
+        }
+      }());
+
     });
 
     tricktionaryCtrl.showTrick = function(trick) {
-      tricktionaryCtrl.tricktionarySvc.loadingVideo = true;
-      tricktionaryCtrl.tricktionarySvc.visibleTrick = trick;
+      if (R.prop('id', trick) !== R.path(['tricktionarySvc', 'visibleTrick', 'id'], tricktionaryCtrl)) {
+        tricktionaryCtrl.tricktionarySvc.loadingVideo = true;
+        tricktionaryCtrl.tricktionarySvc.visibleTrick = trick;
+
+        LocationSvc.skipReload().path('/tricktionary/' + trick.uri);
+      }
     };
 
     tricktionaryCtrl.trustHtml = function(html) {
@@ -308,18 +484,52 @@
     };
 
     tricktionaryCtrl.filterByClass = function(trickClass) {
-      return R.sort(sortByTrickNameAsc,
+      var filtered = R.sort(sortByTrickNameAsc,
         R.filter(classIdMatches(trickClass), R.path(['tricktionary', 'tricks'], tricktionaryCtrl))
       );
+      tricktionaryCtrl.tricktionarySvc.tricksByClassOnScreen[R.prop('id', trickClass)] = filtered;
+      return filtered;
     };
 
     tricktionaryCtrl.close = function() {
-      tricktionaryCtrl.visibleTrick = undefined;
-    }
+      tricktionaryCtrl.tricktionarySvc.visibleTrick = undefined;
+      LocationSvc.skipReload().path('/tricktionary');
+    };
 
   }]);
 
 }(angular));
+
+'use strict';
+
+/**
+ * @ngdoc function
+ * @author seancannon
+ * @name club540.filter.filterTricksByName
+ * @description
+ * # filterTricksByName
+ * Filter the tricktionary by matching the trick name
+ */
+angular.module('club540').filter('filterTricksByName', ['R', 'TricktionarySvc',
+  function(R, TricktionarySvc) {
+    return function (tricktionary, text, classId) {
+
+      var matchesQuery = R.curry(function(q, trick) {
+        if (q) {
+          q = R.compose(R.toLower, R.defaultTo(''))(q);
+          return R.compose(R.test(new RegExp(q)), R.toLower, R.prop('name'))(trick);
+        } else {
+          return true;
+        }
+      });
+
+      var filtered = R.filter(matchesQuery(text), tricktionary);
+
+      TricktionarySvc.tricksByClassOnScreen[classId] = filtered;
+
+      return filtered;
+    };
+  }]);
 
 'use strict';
 
@@ -404,6 +614,30 @@ angular.module('club540').directive('modal', ['$window', '$timeout',
   /**
    * @ngdoc function
    * @author seancannon
+   * @name club540.directive.siteHeader
+   * @description
+   * # siteHeader
+   * Header with logo and nav
+   */
+  angular.module('club540').directive('siteHeader', ['R',
+    function(R) {
+      return {
+        restrict    : 'E',
+        scope       : {},
+        templateUrl : '/partials/site-header',
+        link        : function(scope, element, attrs) {
+
+        }
+      };
+    }]);
+}(angular));
+
+(function(angular) {
+  'use strict';
+
+  /**
+   * @ngdoc function
+   * @author seancannon
    * @name club540.directive.trickDetail
    * @description
    * # trickDetail
@@ -411,6 +645,13 @@ angular.module('club540').directive('modal', ['$window', '$timeout',
    */
   angular.module('club540').directive('trickDetail', ['$sce', '$timeout', 'TricktionarySvc', 'R',
     function($sce, $timeout, TricktionarySvc, R) {
+
+      var fetchPrerequisites = function(scope, list) {
+          scope.tricktionarySvc.resources.tricksByIds(list).get(function(response) {
+            scope.prerequisites = response.data;
+          });
+      };
+
       return {
         scope       : {
           trick : '=',
@@ -428,14 +669,38 @@ angular.module('club540').directive('modal', ['$window', '$timeout',
 
           scope.tricktionarySvc.videoIsEmbedded = true;
 
-          scope.$watch('trick', function(oldVal, newVal) {
-            if (R.prop('id', oldVal) !== R.prop('id', newVal)) {
-              console.log('falsifying videoIsEmbedded');
+          scope.prerequisites = [];
+
+          if (R.length(R.path(['trick', 'prerequisites'], scope))) {
+            fetchPrerequisites(scope, R.path(['trick', 'prerequisites'], scope));
+          }
+
+          scope.replaceTrickWith = function(trick) {
+            if (R.prop('id', trick) !== R.path(['tricktionarySvc', 'visibleTrick', 'id'], scope)) {
+              scope.tricktionarySvc.loadingVideo = true;
+              scope.tricktionarySvc.visibleTrick = trick;
+              scope.prerequisites                = [];
+            }
+          };
+
+          scope.$watch('prerequisites', function(newVal, oldVal) {
+            console.log('prereqs = ', newVal);
+          });
+
+          scope.$watch('trick', function(newVal, oldVal) {
+            if (!oldVal || (R.prop('id', oldVal) !== R.prop('id', newVal))) {
               scope.tricktionarySvc.videoIsEmbedded = false;
+
+              console.log('newVal = ', newVal);
+              if (R.length(R.prop('prerequisites', newVal))) {
+                fetchPrerequisites(scope, R.prop('prerequisites', newVal));
+              }
+
+
+              // Wait one digest cycle.
               $timeout(function() {
-                console.log('truthifying videoIsEmbedded');
                 scope.tricktionarySvc.videoIsEmbedded = true;
-              }, 100);
+              });
             }
           });
         }
@@ -463,6 +728,12 @@ angular.module('club540').directive('tricktionaryVideo', ['$sce', 'TricktionaryS
       link : function(scope, element, attrs) {
 
         scope.tricktionarySvc = TricktionarySvc;
+
+        element.bind('error', function() {
+          scope.tricktionarySvc.loadingVideo    = false;
+          scope.tricktionarySvc.videoIsEmbedded = false;
+          scope.$apply();
+        });
 
         element.bind('canplaythrough', function() {
           scope.tricktionarySvc.loadingVideo = false;

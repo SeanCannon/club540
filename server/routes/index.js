@@ -22,6 +22,7 @@ router.get('/', index);
 router.get('/users', index);
 router.get('/chat', index);
 router.get('/tricktionary', index);
+router.get('/tricktionary/*', index);
 
 router.get('/pages/:name', function(req, res) {
   res.render('pages/' + req.params.name, req.params);

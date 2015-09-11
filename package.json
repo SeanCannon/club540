@@ -82,7 +82,7 @@
     "tricktionary",
     "seancannon"
   ],
-  "license"         : "GNU",
+  "license"         : "GPL-2.0+",
   "bugs"            : {
     "url" : "https://github.com/seancannon/club540/issues"
   },

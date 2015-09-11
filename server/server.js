@@ -70,6 +70,7 @@ app.use('/socket.io', routes);
 //app.use('/api/geo',    geoAPI);
 app.use('/api/tricktionary', tricksAPI);
 app.use('/api/trick',  tricksAPI);
+app.use('/api/tricks', tricksAPI);
 
 // development error handler
 // will print stacktrace
