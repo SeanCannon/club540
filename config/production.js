@@ -3,8 +3,6 @@
 var winston     = require('winston'),
     loggerUtils = require('alien-node-winston-utils');
 
-process.env.NODE_ENV = 'development';
-
 module.exports = {
 
   port : 3000, // TODO this isnt setup for nginx yet

@@ -22,15 +22,8 @@ var express          = require('express'),
       flags : 'a' // Append mode
     }),
     app              = express(),
-    server           = require('http').createServer(app),
-    io               = require('socket.io')(server, {
-      serveClient : false
-    });
+    server           = require('http').createServer(app);
 
-// Socket.io bindings
-io.on('connection', function(socket) {
-  console.warn('a user connected');
-});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

@@ -4,3 +4,7 @@ coverage
 .idea
 .DS_Store
 _php
+dist
+_static
+sql
+etc

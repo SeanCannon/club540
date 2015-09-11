@@ -1,8 +1,10 @@
 'use strict';
 
-var gulp     = require('gulp'),
+var R        = require('ramda'),
+    gulp     = require('gulp'),
     compile  = require('./gulpfiles/gulp-compile'),
-    server   = require('./gulpfiles/gulp-server');
+    server   = require('./gulpfiles/gulp-server'),
+    argv     = require('yargs').argv;
 
 require('./gulpfiles/gulp-test');
 
@@ -16,5 +18,4 @@ gulp.task('server',             server.autoRestartServerTask);
 gulp.task('test-server',        server.autoRestartTestServerTask);
 
 gulp.task('clean',    ['clean-compiled', 'clean-analysis']);
-gulp.task('no-karma', ['compile', 'watch', 'server']);
-gulp.task('default',  ['compile', 'watch', 'server', 'karma']);
+gulp.task('default',  ['compile', 'watch', 'server']);

@@ -1,0 +1,28 @@
+# Load balancing rotation.
+upstream app_club540 {
+    server 127.0.0.1:3000;
+    #server 127.0.0.1:3001;
+    #server 127.0.0.1:3002;
+    #server 127.0.0.1:3003;
+}
+
+# The Nginx server instance
+server {
+    listen 0.0.0.0:80;
+    server_name dev.club540.com club540;
+    access_log /var/log/nginx/club540.log;
+
+    # pass the request to the node.js server with the correct headers and much more can be added, see nginx config options
+    location / {
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header Host $http_host;
+      proxy_set_header X-NginX-Proxy true;
+      proxy_http_version 1.1;
+      proxy_set_header Upgrade $http_upgrade;
+      proxy_set_header Connection "upgrade";
+
+      proxy_pass http://app_club540/;
+      proxy_redirect off;
+    }
+ }
