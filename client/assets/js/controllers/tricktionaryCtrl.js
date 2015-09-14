@@ -6,7 +6,7 @@
   });
 
   var classIdMatches = function(trickClass) {
-    return R.propEq(R.prop('id', trickClass), 'classId');
+    return R.propEq('classId', R.prop('id', trickClass));
   };
 
   /**
@@ -18,35 +18,21 @@
    */
   angular.module('club540').controller('TricktionaryCtrl', ['$sce', '$timeout', '$routeParams', 'TricktionarySvc', 'LocationSvc', 'R',
   function($sce, $timeout, $routeParams, TricktionarySvc, LocationSvc, R) {
-    var tricktionaryCtrl = this;
+    var tricktionaryCtrl       = this,
+        _tricksByClassOnScreen = {},
+        _tricktionary          = R.clone(TricktionarySvc.tricktionary);
 
-    tricktionaryCtrl.tricktionarySvc = TricktionarySvc;
-    tricktionaryCtrl.tricktionary    = {};
+    R.forEach(function(trickClass) {
+      _tricksByClassOnScreen[R.prop('id', trickClass)] = [];
+    }, R.prop('classes', _tricktionary));
 
-    TricktionarySvc.resources.tricktionary.get(function(response) {
+    R.forEach(function(trick) {
+      _tricksByClassOnScreen[R.prop('classId', trick)].push(trick);
+    }, R.prop('tricks', _tricktionary));
 
-      R.forEach(function(trickClass) {
-        tricktionaryCtrl.tricktionarySvc.tricksByClassOnScreen[R.prop('id', trickClass)] = [];
-      }, R.prop('classes', response.data));
-
-      R.forEach(function(trick) {
-        tricktionaryCtrl.tricktionarySvc.tricksByClassOnScreen[R.prop('classId', trick)].push(trick);
-      }, R.prop('tricks', response.data));
-
-      tricktionaryCtrl.tricktionary = response.data;
-
-      (function preloadTrick() {
-        var uri = $routeParams.trick,
-            trick;
-        if (uri) {
-          trick = R.find(R.propEq(uri, 'uri'), R.path(['tricktionary', 'tricks'], tricktionaryCtrl));
-          if (trick) {
-            tricktionaryCtrl.showTrick(trick)
-          }
-        }
-      }());
-
-    });
+    tricktionaryCtrl.tricktionarySvc                       = TricktionarySvc;
+    tricktionaryCtrl.tricktionarySvc.tricksByClassOnScreen = _tricksByClassOnScreen;
+    tricktionaryCtrl.tricktionary                          = _tricktionary;
 
     tricktionaryCtrl.showTrick = function(trick) {
       if (R.prop('id', trick) !== R.path(['tricktionarySvc', 'visibleTrick', 'id'], tricktionaryCtrl)) {
@@ -73,6 +59,17 @@
       tricktionaryCtrl.tricktionarySvc.visibleTrick = undefined;
       LocationSvc.skipReload().path('/tricktionary');
     };
+
+    (function preloadTrick() {
+      var uri = $routeParams.trick,
+          trick;
+      if (uri) {
+        trick = R.find(R.propEq('uri', uri), R.path(['tricktionary', 'tricks'], tricktionaryCtrl));
+        if (trick) {
+          tricktionaryCtrl.showTrick(trick)
+        }
+      }
+    }());
 
   }]);
 

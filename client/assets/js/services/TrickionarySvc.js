@@ -160,6 +160,7 @@
       svc.featuredTrick         = undefined;
       svc.loadingVideo          = true;
       svc.tricksByClassOnScreen = {};
+      svc.tricktionary          = {};
 
       return svc;
     }]);

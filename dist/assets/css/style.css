@@ -1,4 +1,23 @@
 @import url(//fonts.googleapis.com/css?family=Source+Sans+Pro:300,600,300italic,600italic);
+/* ----------- Retina Screens ----------- */
+/* ----------- Non-Retina Screens ----------- */
+/* ----------- Galaxy S3 ----------- */
+/* ----------- Galaxy S4 ----------- */
+/* ----------- Galaxy S5 ----------- */
+/* ----------- HTC One ----------- */
+/* ----------- iPhone 4 and 4S ----------- */
+/* ----------- iPhone 5 and 5S ----------- */
+/* ----------- iPhone 6 ----------- */
+/* ----------- iPhone 6+ ----------- */
+/* ----------- Galaxy Tab 10.1 ----------- */
+/* ----------- iPad 1 and 2 ----------- */
+/* ----------- iPad 3 and 4 ----------- */
+/* ----------- iPad mini ----------- */
+/* ----------- Kindle Fire HD 7" ----------- */
+/* ----------- Kindle Fire HD 8.9" ----------- */
+/* ----------- Asus Nexus 7 ----------- */
+/* ----------- Apple Watch ----------- */
+/* ----------- Moto 360 Watch ----------- */
 /**
  * Truncates text with an ellipsis, if it exceeds the specified width.
  * @param @maxWidth The max width in pixels
@@ -692,6 +711,14 @@ section.tricktionary div.search-container input {
   display: block;
   height: 40px;
   width: 300px;
+  /* Portrait and Landscape */
+  /* Portrait and Landscape */
+  /* Portrait and Landscape */
+  /* Portrait and Landscape */
+  /* Portrait and Landscape */
+  /* Portrait and Landscape */
+  /* Portrait and Landscape */
+  /* Portrait and Landscape */
   font-size: 24px;
   margin: 12px auto 0 auto;
   padding: 5px;
@@ -700,31 +727,231 @@ section.tricktionary div.search-container input {
   border-radius: 5px 5px 5px 5px;
   font-weight: 100;
 }
+@media screen and (device-width: 320px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 2) {
+  section.tricktionary div.search-container input {
+    width: 80%;
+  }
+}
+@media screen and (device-width: 320px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 3) {
+  section.tricktionary div.search-container input {
+    width: 80%;
+  }
+}
+@media screen and (device-width: 360px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 3) {
+  section.tricktionary div.search-container input {
+    width: 80%;
+  }
+}
+@media screen and (device-width: 360px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 3) {
+  section.tricktionary div.search-container input {
+    width: 80%;
+  }
+}
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
+  section.tricktionary div.search-container input {
+    width: 80%;
+  }
+}
+@media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) {
+  section.tricktionary div.search-container input {
+    width: 80%;
+  }
+}
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) {
+  section.tricktionary div.search-container input {
+    width: 80%;
+  }
+}
+@media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) {
+  section.tricktionary div.search-container input {
+    width: 80%;
+  }
+}
 section.tricktionary.condensed {
   margin-right: 500px;
+  /* Portrait and Landscape */
+  /* Portrait and Landscape */
+  /* Portrait and Landscape */
+  /* Portrait and Landscape */
+  /* Portrait and Landscape */
+  /* Portrait and Landscape */
+  /* Portrait and Landscape */
+  /* Portrait and Landscape */
+}
+@media screen and (device-width: 320px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 2) {
+  section.tricktionary.condensed {
+    margin-right: 0;
+  }
+}
+@media screen and (device-width: 320px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 3) {
+  section.tricktionary.condensed {
+    margin-right: 0;
+  }
+}
+@media screen and (device-width: 360px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 3) {
+  section.tricktionary.condensed {
+    margin-right: 0;
+  }
+}
+@media screen and (device-width: 360px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 3) {
+  section.tricktionary.condensed {
+    margin-right: 0;
+  }
+}
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
+  section.tricktionary.condensed {
+    margin-right: 0;
+  }
+}
+@media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) {
+  section.tricktionary.condensed {
+    margin-right: 0;
+  }
+}
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) {
+  section.tricktionary.condensed {
+    margin-right: 0;
+  }
+}
+@media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) {
+  section.tricktionary.condensed {
+    margin-right: 0;
+  }
 }
 section.tricktionary.condensed div.search-container input {
   margin-left: 12px;
+  /* Portrait and Landscape */
+  /* Portrait and Landscape */
+  /* Portrait and Landscape */
+  /* Portrait and Landscape */
+  /* Portrait and Landscape */
+  /* Portrait and Landscape */
+  /* Portrait and Landscape */
+  /* Portrait and Landscape */
+  /* Portrait */
+  /* Portrait */
+  /* Portrait */
+  /* Portrait */
+  /* Portrait */
+  /* Portrait */
+  /* Portrait */
+}
+@media screen and (device-width: 320px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 2) {
+  section.tricktionary.condensed div.search-container input {
+    margin-left: auto;
+  }
+}
+@media screen and (device-width: 320px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 3) {
+  section.tricktionary.condensed div.search-container input {
+    margin-left: auto;
+  }
+}
+@media screen and (device-width: 360px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 3) {
+  section.tricktionary.condensed div.search-container input {
+    margin-left: auto;
+  }
+}
+@media screen and (device-width: 360px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 3) {
+  section.tricktionary.condensed div.search-container input {
+    margin-left: auto;
+  }
+}
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
+  section.tricktionary.condensed div.search-container input {
+    margin-left: auto;
+  }
+}
+@media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) {
+  section.tricktionary.condensed div.search-container input {
+    margin-left: auto;
+  }
+}
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) {
+  section.tricktionary.condensed div.search-container input {
+    margin-left: auto;
+  }
+}
+@media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) {
+  section.tricktionary.condensed div.search-container input {
+    margin-left: auto;
+  }
+}
+@media (max-device-width: 800px) and (orientation: portrait) {
+  section.tricktionary.condensed div.search-container input {
+    width: 227px;
+  }
+}
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 1) {
+  section.tricktionary.condensed div.search-container input {
+    width: 227px;
+  }
+}
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+  section.tricktionary.condensed div.search-container input {
+    width: 227px;
+  }
+}
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 1) {
+  section.tricktionary.condensed div.search-container input {
+    width: 227px;
+  }
+}
+@media only screen and (min-device-width: 800px) and (max-device-width: 1280px) and (-webkit-min-device-pixel-ratio: 1.5) and (orientation: portrait) {
+  section.tricktionary.condensed div.search-container input {
+    width: 227px;
+  }
+}
+@media only screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1.5) and (orientation: portrait) {
+  section.tricktionary.condensed div.search-container input {
+    width: 227px;
+  }
+}
+@media screen and (device-width: 601px) and (device-height: 906px) and (-webkit-min-device-pixel-ratio: 1.331) and (-webkit-max-device-pixel-ratio: 1.332) and (orientation: portrait) {
+  section.tricktionary.condensed div.search-container input {
+    width: 227px;
+  }
 }
 section.tricktionary.condensed div.trick-class div.tricks div.trick {
   width: 46%;
+  /* Portrait and Landscape */
+  /* Portrait and Landscape */
+  /* Portrait and Landscape */
+  /* Portrait and Landscape */
+  /* Portrait and Landscape */
+  /* Portrait and Landscape */
+  /* Portrait and Landscape */
 }
-@media only screen and (max-width: 1024px) {
+@media (min-device-width: 800px) and (max-device-width: 1280px) {
   section.tricktionary.condensed div.trick-class div.tricks div.trick {
     width: 96%;
   }
 }
-@media only screen and (max-width: 768px) {
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) {
   section.tricktionary.condensed div.trick-class div.tricks div.trick {
     width: 96%;
   }
 }
-@media only screen and (max-width: 680px) {
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) {
   section.tricktionary.condensed div.trick-class div.tricks div.trick {
     width: 96%;
   }
 }
-@media only screen and (max-width: 400px) {
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) {
+  section.tricktionary.condensed div.trick-class div.tricks div.trick {
+    width: 96%;
+  }
+}
+@media only screen and (min-device-width: 800px) and (max-device-width: 1280px) and (-webkit-min-device-pixel-ratio: 1.5) {
+  section.tricktionary.condensed div.trick-class div.tricks div.trick {
+    width: 96%;
+  }
+}
+@media only screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1.5) {
+  section.tricktionary.condensed div.trick-class div.tricks div.trick {
+    width: 96%;
+  }
+}
+@media screen and (device-width: 601px) and (device-height: 906px) and (-webkit-min-device-pixel-ratio: 1.331) and (-webkit-max-device-pixel-ratio: 1.332) {
   section.tricktionary.condensed div.trick-class div.tricks div.trick {
     width: 96%;
   }
@@ -866,24 +1093,182 @@ section.tricktionary trick-detail {
   bottom: 0;
   width: 450px;
   overflow-y: scroll;
+  overflow-x: hidden;
+  /* Portrait and Landscape */
+  /* Portrait and Landscape */
+  /* Portrait and Landscape */
+  /* Portrait and Landscape */
+  /* Portrait and Landscape */
+  /* Portrait and Landscape */
+  /* Portrait and Landscape */
+  /* Portrait and Landscape */
+}
+@media screen and (device-width: 320px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 2) {
+  section.tricktionary trick-detail {
+    width: 100%;
+    padding: 0;
+  }
+}
+@media screen and (device-width: 320px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 3) {
+  section.tricktionary trick-detail {
+    width: 100%;
+    padding: 0;
+  }
+}
+@media screen and (device-width: 360px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 3) {
+  section.tricktionary trick-detail {
+    width: 100%;
+    padding: 0;
+  }
+}
+@media screen and (device-width: 360px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 3) {
+  section.tricktionary trick-detail {
+    width: 100%;
+    padding: 0;
+  }
+}
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
+  section.tricktionary trick-detail {
+    width: 100%;
+    padding: 0;
+  }
+}
+@media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) {
+  section.tricktionary trick-detail {
+    width: 100%;
+    padding: 0;
+  }
+}
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) {
+  section.tricktionary trick-detail {
+    width: 100%;
+    padding: 0;
+  }
+}
+@media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) {
+  section.tricktionary trick-detail {
+    width: 100%;
+    padding: 0;
+  }
 }
 section.tricktionary trick-detail div.trick {
   float: none;
   width: auto;
 }
 section.tricktionary trick-detail a.close {
-  position: absolute;
-  top: 20px;
-  right: 20px;
+  position: fixed;
+  top: 46px;
+  right: 0;
   font-size: 36px;
+  padding: 5px 20px;
+  width: 450px;
+  text-align: right;
+  background-color: rgba(255, 255, 255, 0.8);
+  z-index: 5;
+  /* Portrait and Landscape */
+  /* Portrait and Landscape */
+  /* Portrait and Landscape */
+  /* Portrait and Landscape */
+  /* Portrait and Landscape */
+  /* Portrait and Landscape */
+  /* Portrait and Landscape */
+  /* Portrait and Landscape */
+}
+@media screen and (device-width: 320px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 2) {
+  section.tricktionary trick-detail a.close {
+    width: 100%;
+  }
+}
+@media screen and (device-width: 320px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 3) {
+  section.tricktionary trick-detail a.close {
+    width: 100%;
+  }
+}
+@media screen and (device-width: 360px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 3) {
+  section.tricktionary trick-detail a.close {
+    width: 100%;
+  }
+}
+@media screen and (device-width: 360px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 3) {
+  section.tricktionary trick-detail a.close {
+    width: 100%;
+  }
+}
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
+  section.tricktionary trick-detail a.close {
+    width: 100%;
+  }
+}
+@media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) {
+  section.tricktionary trick-detail a.close {
+    width: 100%;
+  }
+}
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) {
+  section.tricktionary trick-detail a.close {
+    width: 100%;
+  }
+}
+@media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) {
+  section.tricktionary trick-detail a.close {
+    width: 100%;
+  }
 }
 section.tricktionary trick-detail h4 {
-  margin: 50px auto;
+  margin: 60px auto 20px auto;
   width: 400px;
-  font-size: 48px;
-  line-height: 48px;
+  /* Portrait and Landscape */
+  /* Portrait and Landscape */
+  /* Portrait and Landscape */
+  /* Portrait and Landscape */
+  /* Portrait and Landscape */
+  /* Portrait and Landscape */
+  /* Portrait and Landscape */
+  /* Portrait and Landscape */
+  font-size: 40px;
+  line-height: 40px;
   text-transform: uppercase;
   font-weight: lighter;
+}
+@media screen and (device-width: 320px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 2) {
+  section.tricktionary trick-detail h4 {
+    width: 100%;
+  }
+}
+@media screen and (device-width: 320px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 3) {
+  section.tricktionary trick-detail h4 {
+    width: 100%;
+  }
+}
+@media screen and (device-width: 360px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 3) {
+  section.tricktionary trick-detail h4 {
+    width: 100%;
+  }
+}
+@media screen and (device-width: 360px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 3) {
+  section.tricktionary trick-detail h4 {
+    width: 100%;
+  }
+}
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
+  section.tricktionary trick-detail h4 {
+    width: 100%;
+  }
+}
+@media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) {
+  section.tricktionary trick-detail h4 {
+    width: 100%;
+  }
+}
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) {
+  section.tricktionary trick-detail h4 {
+    width: 100%;
+  }
+}
+@media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) {
+  section.tricktionary trick-detail h4 {
+    width: 100%;
+  }
 }
 section.tricktionary trick-detail h5 {
   margin: 25px;
@@ -919,10 +1304,106 @@ section.tricktionary trick-detail .video-mask {
   box-shadow: 0px 0 10px #5a8aba;
   width: 400px;
   overflow: hidden;
+  /* Portrait and Landscape */
+  /* Portrait and Landscape */
+  /* Portrait and Landscape */
+  /* Portrait and Landscape */
+  /* Portrait and Landscape */
+  /* Portrait and Landscape */
+  /* Portrait and Landscape */
+  /* Portrait and Landscape */
+}
+@media screen and (device-width: 320px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 2) {
+  section.tricktionary trick-detail .video-mask {
+    width: 80%;
+  }
+}
+@media screen and (device-width: 320px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 3) {
+  section.tricktionary trick-detail .video-mask {
+    width: 80%;
+  }
+}
+@media screen and (device-width: 360px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 3) {
+  section.tricktionary trick-detail .video-mask {
+    width: 80%;
+  }
+}
+@media screen and (device-width: 360px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 3) {
+  section.tricktionary trick-detail .video-mask {
+    width: 80%;
+  }
+}
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
+  section.tricktionary trick-detail .video-mask {
+    width: 80%;
+  }
+}
+@media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) {
+  section.tricktionary trick-detail .video-mask {
+    width: 80%;
+  }
+}
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) {
+  section.tricktionary trick-detail .video-mask {
+    width: 80%;
+  }
+}
+@media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) {
+  section.tricktionary trick-detail .video-mask {
+    width: 80%;
+  }
 }
 section.tricktionary trick-detail video {
   width: 400px;
   display: block;
+  /* Portrait and Landscape */
+  /* Portrait and Landscape */
+  /* Portrait and Landscape */
+  /* Portrait and Landscape */
+  /* Portrait and Landscape */
+  /* Portrait and Landscape */
+  /* Portrait and Landscape */
+  /* Portrait and Landscape */
+}
+@media screen and (device-width: 320px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 2) {
+  section.tricktionary trick-detail video {
+    width: 100%;
+  }
+}
+@media screen and (device-width: 320px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 3) {
+  section.tricktionary trick-detail video {
+    width: 100%;
+  }
+}
+@media screen and (device-width: 360px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 3) {
+  section.tricktionary trick-detail video {
+    width: 100%;
+  }
+}
+@media screen and (device-width: 360px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 3) {
+  section.tricktionary trick-detail video {
+    width: 100%;
+  }
+}
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
+  section.tricktionary trick-detail video {
+    width: 100%;
+  }
+}
+@media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) {
+  section.tricktionary trick-detail video {
+    width: 100%;
+  }
+}
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) {
+  section.tricktionary trick-detail video {
+    width: 100%;
+  }
+}
+@media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) {
+  section.tricktionary trick-detail video {
+    width: 100%;
+  }
 }
 section.tricktionary trick-detail.ng-enter,
 section.tricktionary trick-detail.ng-leave {

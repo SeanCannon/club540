@@ -1,3 +1,6 @@
+@import '../../../bower_components/responsiveless/index';
+
+
 .boxShadow(@arguments) {
   -webkit-box-shadow : @arguments;
   -moz-box-shadow    : @arguments;
@@ -73,4 +76,26 @@
   -moz-transition    : all @duration cubic-bezier(0.860, 0.000, 0.070, 1.000);
   -o-transition      : all @duration cubic-bezier(0.860, 0.000, 0.070, 1.000);
   transition         : all @duration cubic-bezier(0.860, 0.000, 0.070, 1.000);
+}
+
+.foo(@rules) {
+  @rules();
+}
+
+.foo(@rules, @bar) when (@bar = red) {
+  @rules();
+  border : 10px solid red;
+}
+
+.foo(@rules, @bar) when (@bar = blue) {
+  @rules();
+  border : 10px solid blue;
+}
+
+.bar(@rules) {
+  .foo(@rules);
+}
+
+.bar(@rules, @orientation) {
+  .foo(@rules, @orientation);
 }

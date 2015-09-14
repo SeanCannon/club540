@@ -18,6 +18,11 @@ section.tricktionary {
       display     : block;
       height      : 40px;
       width       : 300px;
+
+      .phones({
+        width : 80%;
+      });
+
       font-size   : 24px;
       margin      : 12px auto 0 auto;
       padding     : 5px;
@@ -30,9 +35,21 @@ section.tricktionary {
 
     margin-right : 500px;
 
+    .phones({
+      margin-right : 0;
+    });
+
     div.search-container {
       input {
         margin-left : 12px;
+
+        .phones({
+          margin-left : auto;
+        });
+
+        .tablets({
+          width : 227px;
+        }, portrait);
       }
     }
     div.trick-class {
@@ -40,18 +57,10 @@ section.tricktionary {
         div.trick {
           width : 46%;
 
-          @media only screen and (max-width : @tabletLandscapeWidth) {
+          .tablets({
             width : 96%;
-          }
-          @media only screen and (max-width : @tabletPortraitWidth) {
-            width : 96%;
-          }
-          @media only screen and (max-width : @mobileLandscapeWidth) {
-            width : 96%;
-          }
-          @media only screen and (max-width : @mobilePortraitWidth) {
-            width : 96%;
-          }
+          });
+
         }
       }
     }
@@ -205,6 +214,12 @@ section.tricktionary {
     bottom           : 0;
     width            : 450px;
     overflow-y       : scroll;
+    overflow-x       : hidden;
+
+    .phones({
+        width   : 100%;
+        padding : 0;
+    });
 
     div.trick {
       float : none;
@@ -212,17 +227,32 @@ section.tricktionary {
     }
 
     a.close {
-      position  : absolute;
-      top       : 20px;
-      right     : 20px;
-      font-size : 36px;
+      position         : fixed;
+      top              : 46px;
+      right            : 0;
+      font-size        : 36px;
+      padding          : 5px 20px;
+      width            : 450px;
+      text-align       : right;
+      background-color : rgba(255, 255, 255, .8);
+      z-index          : 5;
+
+      .phones({
+        width : 100%;
+      });
+
     }
 
     h4 {
-      margin         : 50px auto;
+      margin         : 60px auto 20px auto;
       width          : 400px;
-      font-size      : 48px;
-      line-height    : 48px;
+
+      .phones({
+          width : 100%;
+      });
+
+      font-size      : 40px;
+      line-height    : 40px;
       text-transform : uppercase;
       font-weight    : lighter;
     }
@@ -260,10 +290,18 @@ section.tricktionary {
       .boxShadow(0px 0 10px #5a8aba);
       width              : 400px;
       overflow           : hidden;
+
+      .phones({
+        width : 80%;
+      });
     }
     video {
       width   : 400px;
       display : block;
+
+      .phones({
+        width : 100%;
+      });
     }
 
     &.ng-enter, &.ng-leave {

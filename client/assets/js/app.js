@@ -18,6 +18,18 @@
       $locationProvider.html5Mode(true);
       $httpProvider.interceptors.push('FlashSvcInterceptor');
 
+      var tricktionaryPromise = ['$q', 'R', 'TricktionarySvc', function($q, R, TricktionarySvc) {
+
+        var deferred = $q.defer();
+
+        TricktionarySvc.resources.tricktionary.get(function(response) {
+          TricktionarySvc.tricktionary = R.prop('data', response);
+          deferred.resolve();
+        });
+
+        return deferred.promise;
+      }];
+
       $routeProvider.
         //when('/', {
         //  templateUrl : '/pages/index',
@@ -30,11 +42,17 @@
         when('/tricktionary', {
           templateUrl    : '/pages/tricktionary',
           controller     : 'TricktionaryCtrl as tricktionaryCtrl',
+          resolve        : {
+            tricktionary : tricktionaryPromise
+          },
           reloadOnSearch : false
         }).
         when('/tricktionary/:trick', {
           templateUrl    : '/pages/tricktionary',
           controller     : 'TricktionaryCtrl as tricktionaryCtrl',
+          resolve        : {
+            tricktionary : tricktionaryPromise
+          },
           reloadOnSearch : false
         }).
         //when('/chat', {
