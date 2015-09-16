@@ -8,3 +8,4 @@ dist
 _static
 sql
 etc
+server/_batchUpload.js
