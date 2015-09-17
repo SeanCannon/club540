@@ -28,7 +28,10 @@ function getTricksByIds(req, res) {
     .then(apiUtils.jsonResponseSuccess(req, res))
     .catch(getTricksInList.bind(null, 't_id', trickIds))
     .then(cacheUtils.setItem(CACHE_KEY, CACHE_EXPIRE_ONE_WEEK))
-    .then(apiUtils.jsonResponseSuccess(req, res));
+    .then(apiUtils.jsonResponseSuccess(req, res))
+    .catch(function(err) {
+      return apiUtils.jsonResponseError(req, res, R.merge(err, { statusCode : 404 }))
+    });
 }
 
 module.exports = getTricksByIds;
