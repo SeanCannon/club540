@@ -7,7 +7,7 @@
       "email": "alienwebguy@gmail.com"
     }
   ],
-  "version": "5.0.4",
+  "version": "5.0.5",
   "description": "International martial arts tricking community.",
   "main": "server/server.js",
   "dependencies": {
@@ -40,7 +40,7 @@
     "passport-twitter": "*",
     "prettycats": "*",
     "q": "*",
-    "ramda": "^0.17.1",
+    "ramda": "^0.25.0",
     "redis": "^0.12.1",
     "request": "^2.62.0",
     "serve-favicon": "~2.1.3",
@@ -51,9 +51,6 @@
   },
   "devDependencies": {
     "coveralls": "^2.11.2",
-    "istanbul": "^0.3.13",
-    "jasmine": "^2.3.1",
-    "jshint-stylish": "^0.2.0",
     "gulp": "*",
     "gulp-concat": "*",
     "gulp-if": "*",
@@ -63,9 +60,13 @@
     "gulp-ng-html2js": "*",
     "gulp-nodemon": "*",
     "gulp-shell": "*",
-    "gulp-uglify": "*"
+    "gulp-uglify": "*",
+    "istanbul": "^0.3.13",
+    "jasmine": "^2.3.1",
+    "jshint-stylish": "^0.2.0"
   },
   "scripts": {
+    "start": "./node_modules/.bin/gulp server",
     "test": "./node_modules/.bin/istanbul cover ./node_modules/.bin/jasmine"
   },
   "repository": {

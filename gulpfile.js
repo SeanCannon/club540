@@ -17,5 +17,5 @@ gulp.task('clean-compiled',     compile.cleanCompilationFilesTask);
 gulp.task('server',             server.autoRestartServerTask);
 gulp.task('test-server',        server.autoRestartTestServerTask);
 
-gulp.task('clean',    ['clean-compiled', 'clean-analysis']);
+gulp.task('clean',    ['clean-compiled']);
 gulp.task('default',  ['compile', 'watch', 'server']);

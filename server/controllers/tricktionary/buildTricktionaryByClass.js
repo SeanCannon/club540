@@ -12,7 +12,7 @@ var Trick      = require('../../models/tricktionary/trick/Trick'),
 var getTricksByClassId = function(trickClass) {
   var _trickClass = R.clone(trickClass);
   return Trick.getTricksByClass(R.prop('id', _trickClass))
-    .then(R.compose(R.merge(_trickClass), R.createMapEntry('tricks')));
+    .then(R.compose(R.merge(_trickClass), R.objOf('tricks')));
 };
 
 function buildTricktionaryByClass() {

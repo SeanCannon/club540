@@ -1,4 +1,27 @@
-@import url(//fonts.googleapis.com/css?family=Source+Sans+Pro:300,600,300italic,600italic);
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: italic;
+  font-weight: 300;
+  src: local('Source Sans Pro Light Italic'), local('SourceSansPro-LightItalic'), url(http://fonts.gstatic.com/s/sourcesanspro/v11/6xKwdSBYKcSV-LCoeQqfX1RYOo3qPZZMkids18E.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: italic;
+  font-weight: 600;
+  src: local('Source Sans Pro SemiBold Italic'), local('SourceSansPro-SemiBoldItalic'), url(http://fonts.gstatic.com/s/sourcesanspro/v11/6xKwdSBYKcSV-LCoeQqfX1RYOo3qPZY4lCds18E.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Source Sans Pro Light'), local('SourceSansPro-Light'), url(http://fonts.gstatic.com/s/sourcesanspro/v11/6xKydSBYKcSV-LCoeQqfX1RYOo3ik4zwlxdr.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-weight: 600;
+  src: local('Source Sans Pro SemiBold'), local('SourceSansPro-SemiBold'), url(http://fonts.gstatic.com/s/sourcesanspro/v11/6xKydSBYKcSV-LCoeQqfX1RYOo3i54rwlxdr.ttf) format('truetype');
+}
 /* ----------- Retina Screens ----------- */
 /* ----------- Non-Retina Screens ----------- */
 /* ----------- Galaxy S3 ----------- */
@@ -705,6 +728,7 @@ section.tricktionary div.search-container {
   top: 45px;
   left: 0;
   border-bottom: 2px solid #676D30;
+  z-index: 999;
 }
 section.tricktionary div.search-container input {
   position: relative;
@@ -817,6 +841,9 @@ section.tricktionary.condensed {
   section.tricktionary.condensed {
     margin-right: 0;
   }
+}
+section.tricktionary.condensed div.search-container {
+  z-index: 999;
 }
 section.tricktionary.condensed div.search-container input {
   margin-left: 12px;

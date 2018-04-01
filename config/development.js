@@ -17,7 +17,8 @@ module.exports = {
     host            : 'localhost',
     user            : 'root',
     password        : 'root',
-    database        : 'club540'
+    database        : 'club540',
+    port : 3307
   },
 
   //    // Email configuration
@@ -78,3 +79,4 @@ module.exports = {
     }
   }
 };
+console.log('USING DEV CONFIG');

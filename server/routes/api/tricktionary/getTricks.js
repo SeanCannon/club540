@@ -23,10 +23,13 @@ function getTricks(req, res) {
   return cacheUtils.getItem(CACHE_KEY)
     .then(JSON.parse)
     .then(apiUtils.jsonResponseSuccess(req, res))
-    .catch(buildTricktionaryLinearly)
-    .then(cacheUtils.setItem(CACHE_KEY, CACHE_EXPIRE_ONE_WEEK))
-    .catch(console.log.bind(console))
-    .then(apiUtils.jsonResponseSuccess(req, res));
+    .catch(function(err) {
+      console.error('Caught error in \'api.tricks.getTricks\'', err);
+      return buildTricktionaryLinearly()
+        .then(cacheUtils.setItem(CACHE_KEY, CACHE_EXPIRE_ONE_WEEK))
+        .then(apiUtils.jsonResponseSuccess(req, res))
+        .catch(console.log.bind(console));
+    });
 }
 
 module.exports = getTricks;

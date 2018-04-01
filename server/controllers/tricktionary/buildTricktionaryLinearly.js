@@ -8,7 +8,7 @@ var Trick       = require('../../models/tricktionary/trick/Trick'),
     TrickClass  = require('../../models/tricktionary/trickClass/TrickClass');
 
 var appendTricktionaryComponent = R.curry(function(tricktionary, key, val) {
-  return R.merge(tricktionary, R.createMapEntry(key, val));
+  return R.merge(tricktionary, R.objOf(key, val));
 });
 
 var getTrickClassesAndAddKey = function(tricktionary) {

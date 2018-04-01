@@ -26,11 +26,14 @@ function getTricksByIds(req, res) {
   return cacheUtils.getItem(CACHE_KEY)
     .then(JSON.parse)
     .then(apiUtils.jsonResponseSuccess(req, res))
-    .catch(getTricksInList.bind(null, 't_id', trickIds))
-    .then(cacheUtils.setItem(CACHE_KEY, CACHE_EXPIRE_ONE_WEEK))
-    .then(apiUtils.jsonResponseSuccess(req, res))
     .catch(function(err) {
-      return apiUtils.jsonResponseError(req, res, R.merge(err, { statusCode : 404 }))
+      console.error('Caught error in api.tricks.getTricksByIds: ' + trickIds, err);
+      return getTricksInList('t_id', trickIds)
+        .then(cacheUtils.setItem(CACHE_KEY, CACHE_EXPIRE_ONE_WEEK))
+        .then(apiUtils.jsonResponseSuccess(req, res))
+        .catch(function(err) {
+          return apiUtils.jsonResponseError(req, res, R.merge(err, { statusCode : 404 }))
+        });
     });
 }
 
